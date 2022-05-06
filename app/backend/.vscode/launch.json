@@ -1,0 +1,106 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // js:nodemon
+    {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "backend",
+      "program": "${workspaceFolder}/src",
+      "request": "launch",
+      "restart": true,
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
+      "args": [
+        "--ext",
+        "ts",
+        "--watch",
+        "backend/src",
+        "--exec",
+        "ts-node"
+      ],  
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    // js:jest
+    {
+      "name": "js:jest",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "js:jest"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    // js:mocha
+    {
+      "name": "js:mocha",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "js:mocha"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    // ts:nodemon
+    {
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "name": "ts:nodemon",
+      "program": "${workspaceFolder}/ts",
+      "request": "launch",
+      "restart": true,
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
+      "args": [
+        "--ext",
+        "ts",
+        "--watch",
+        "ts",
+        "--exec",
+        "ts-node"
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    // ts:jest
+    {
+      "name": "ts:jest",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "ts:jest"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    // ts:mocha
+    {
+      "name": "ts:mocha",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "ts:mocha"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+  ],
+  "compounds": []
+}
