@@ -2,7 +2,7 @@ import React from "react";
 
 interface IButton {
   text: string;
-  handleClick?: Function;
+  handleClick?: (Revent: React.FormEvent<HTMLInputElement>) => void;
 }
 
 export default function Button({ text, handleClick }: IButton) {
