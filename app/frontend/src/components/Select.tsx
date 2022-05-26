@@ -3,9 +3,9 @@ import React from "react";
 export default function Select() {
   const proficionais = ["Select", "Heloisa Ezequiel", "Amanda Souza"];
   return (
-    <select name="" id="">
+    <select name="" id="professional">
       {proficionais.map((proficional) => (
-        <option value={proficional}>{proficional}</option>
+        <option key={proficional}  value={proficional}>{proficional}</option>
       ))}
     </select>
   );

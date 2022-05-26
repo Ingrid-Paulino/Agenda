@@ -21,6 +21,7 @@ export default function Login() {
   const onSaveResInput = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
     dispatch(inputsLogin({email, password}))
+    window.location.href = "customerDay"
   }
 
   return (
@@ -46,7 +47,8 @@ export default function Login() {
         <Input text="email@gmail.com" labelInput="Login" func={(event) => handleChange(event, setEmail)}/>
         <Input text="********" labelInput="Senha" func={(event) => handleChange(event, setPassword)}/>
         <Button text="LOGIN" handleClick={onSaveResInput}/>
-        <Button text="Ainda não tenho conta" />
+        {/* Button 2 não funciona */}
+        <Button text="Ainda não tenho conta" handleClick={() => window.location.href = "register"} /> 
       </form>
     </main>
   );
