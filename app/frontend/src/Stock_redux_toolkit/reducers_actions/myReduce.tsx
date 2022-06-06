@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import { AppDispatch, AppThunk } from "../store";
-import { AppDispatch } from "../store";
 
 
 const stock = createSlice({

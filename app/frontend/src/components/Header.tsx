@@ -5,29 +5,22 @@ import Button from "./Button";
 interface IHeader {
   titlePage: string;
   existButtonInHeader: boolean;
+  textButtonRegister: string;
+  textButtonInside: string;
+  funcLoginAndRegister(event: React.FormEvent<HTMLInputElement>): void
 }
 
-export default function Header({titlePage, existButtonInHeader}: IHeader) {
+export default function Header({titlePage, existButtonInHeader, textButtonRegister, textButtonInside, funcLoginAndRegister}: IHeader) {
 
-  // const handleClick = (event: React.FormEvent<HTMLFormElement>)  --> esse tipo FormEvent estava dando erro no onClick
-  const handleClick = (event: React.MouseEvent) => {
-    event.preventDefault();
-    // console.log(event);
-    
-    if ((event.target as HTMLElement).innerHTML  === "CADASTRAR") {
-      window.location.href = "register"
-    } else {
-      window.location.href = "login"
-    }
-  }
+  
 
   return (
     <header>
       <h1>{titlePage}</h1>
       {existButtonInHeader ? (
         <>
-          <Button text="CADASTRAR" handleClick={handleClick}/>
-          <Button text="ENTRAR"  handleClick={handleClick}/>
+          <Button text={textButtonRegister} handleClick={funcLoginAndRegister}/>
+          <Button text={textButtonInside}  handleClick={funcLoginAndRegister}/>
         </>
       ) : null}      
     </header>  );
