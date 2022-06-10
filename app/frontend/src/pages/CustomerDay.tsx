@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { RootState } from "../Stock_redux_toolkit/store";
 
@@ -11,6 +12,8 @@ export default function CustomerDay() {
   // console.log("1", stock);
   // console.log("2", stock.myReducer.login);
   const [value, onChange] = useState(new Date());
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -25,7 +28,11 @@ export default function CustomerDay() {
           FONTE: https://projects.wojtekmaj.pl/react-calendar/
           REPOSITORIO: https://github.com/wojtekmaj/react-calendar
          */}
-        <Calendar onChange={onChange} value={value} />
+        <Calendar
+          onChange={onChange}
+          onClickDay={() => navigate("/customerHour")}
+          value={value}
+        />
       </div>
     </>
   );
