@@ -6,6 +6,8 @@ import Input from "../components/Input";
 // import { RootState } from "../Stock_redux_toolkit/store";
 import { inputsLogin } from "../Stock_redux_toolkit/reducers_actions/myReduce";
 
+import { validateLogin } from "../validations/inputs";
+
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,16 +26,20 @@ export default function Login() {
 
   const onSaveResInput = async (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
+    // Voltar aqui para a validação
+    validateLogin(email, password)
+
+    
     await dispatch(inputsLogin({ email, password }));
-    navigate("/customerDay");
-    setEmail(" "); // nn funciona
+    // navigate("/customerDay");
+    setEmail(" ");
     setPassword(" ");
   };
 
   return (
     <main>
       <img src="../../images/esmalte.png" alt="esmalte" width="150px" />
-      <h1>Agenda Heloisa</h1>
+      <h1>Faça seu Login</h1>
       <form action="" onSubmit={(event) => event.preventDefault()}>
         {/* Forma 1 */}
         {/* <Input text="email@gmail.com" labelInput="Login" func={(event) =>{
@@ -49,22 +55,25 @@ export default function Login() {
           console.log('senha', senha);
         }
         }/> */}
+
         {/* Forma 2 Refatorada */}
         <Input
           text="email@gmail.com"
           labelInput="Login"
+          type="email"
           func={(event) => handleChange(event, setEmail)}
         />
         <Input
           text="********"
-          labelInput="Senha"
+          labelInput="Senha (minimo 8 caracters)"
+          type="password"
           func={(event) => handleChange(event, setPassword)}
         />
         <Button text="LOGIN" handleClick={onSaveResInput} />
-        {/* Button 2 não funciona */}
+
         <Button
           text="Ainda não tenho conta"
-          handleClick={() => (window.location.href = "register")}
+          handleClick={() => (navigate("/register"))}
         />
       </form>
     </main>

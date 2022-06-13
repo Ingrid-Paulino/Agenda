@@ -2,7 +2,7 @@ import React from "react";
 
 interface IButton {
   text: string;
-  classN: string;
+  classN?: string;
   handleClick?: (Revent: React.FormEvent<HTMLInputElement>) => void;
 }
 
