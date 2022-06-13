@@ -2,11 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
-import tablePrices from "../data/TablePrice";
 import "../styles/components.css";
 
 export default function Home() {
-  // const handleClick = (event: React.FormEvent<HTMLFormElement>)  --> esse tipo FormEvent estava dando erro no onClick
   const navigate = useNavigate();
 
   const handleClick = (event: React.FormEvent<HTMLInputElement>) => {
