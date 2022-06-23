@@ -1,12 +1,12 @@
-import { BuildOptions, DataTypes, Model, Sequelize } from "sequelize"
+import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
 
 type UserStatic = typeof Model
   & { associate: (models: any) => void }
   & { new(values?: Record<string, unknown>, options?: BuildOptions): any }
 
 const addressDAO = (sequelize: Sequelize) => {
-  const Address = <UserStatic> sequelize.define(
-    "Address",
+  const Address = <UserStatic>sequelize.define(
+    'Address',
     {
       id: {
         allowNull: false,
@@ -36,9 +36,9 @@ const addressDAO = (sequelize: Sequelize) => {
       },
     },
     {
-      tableName: "Addresses",
+      tableName: 'Addresses',
       underscored: true,
-    })
+    });
 
   // hasOne -> possui um
   // hasMany -> possui vários
@@ -47,13 +47,13 @@ const addressDAO = (sequelize: Sequelize) => {
 
   Address.associate = (models) => {
     Address.belongsTo(models.Client,
-      { foreignKey: "address_id", as: "clients" })
+      { foreignKey: 'address_id', as: 'clients' });
 
     Address.belongsTo(models.Professional,
-      { foreignKey: "address_id", as: "professionals"})
-  }
+      { foreignKey: 'address_id', as: 'professionals' });
+  };
 
-  return Address
-}
+  return Address;
+};
 
-export default addressDAO
+export default addressDAO;

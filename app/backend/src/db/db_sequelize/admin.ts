@@ -1,8 +1,8 @@
-import { Sequelize, DataTypes } from "sequelize"
+import { Sequelize, DataTypes } from 'sequelize';
 
 const adminDAO = (sequelize: Sequelize) => {
   const Admin = sequelize.define(
-    "Admin",
+    'Admin',
     {
       id: {
         allowNull: false,
@@ -32,11 +32,11 @@ const adminDAO = (sequelize: Sequelize) => {
       },
     },
     {
-      tableName: "Admins",
+      tableName: 'Admins',
       underscored: true,
     }
-  )
-  return Admin
-}
+  );
+  return Admin;
+};
 
-export default adminDAO
+export default adminDAO;

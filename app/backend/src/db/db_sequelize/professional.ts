@@ -1,4 +1,4 @@
-import { BuildOptions, DataTypes, Model, Sequelize } from "sequelize"
+import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
 
 type UserStatic = typeof Model
   & { associate: (models: any) => void }
@@ -6,7 +6,7 @@ type UserStatic = typeof Model
 
 const professionalDAO = (sequelize: Sequelize) => {
   const Professional = <UserStatic>sequelize.define(
-    "Professional",
+    'Professional',
     {
       id: {
         allowNull: false,
@@ -40,20 +40,20 @@ const professionalDAO = (sequelize: Sequelize) => {
       },
     },
     {
-      tableName: "Professionals",
+      tableName: 'Professionals',
       underscored: true,
     }
-  )
+  );
 
   Professional.associate = (models) => {
     Professional.hasOne(models.Address,
-      { foreignKey: "professional_id", as: "addresses" })
+      { foreignKey: 'professional_id', as: 'addresses' });
 
     Professional.belongsTo(models.Client,
-      { foreignKey: "client_id", as: "clients" })
-  }
+      { foreignKey: 'client_id', as: 'clients' });
+  };
 
-  return Professional
-}
+  return Professional;
+};
 
-export default professionalDAO
+export default professionalDAO;

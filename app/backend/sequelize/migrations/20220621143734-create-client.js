@@ -1,18 +1,19 @@
-"use strict"
+'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      "Clients",
+      'Clients',
       {
         id: {
           allowNull: false,
-          autoIncrement: true,
+          // autoIncrement: true,
           primaryKey: true,
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING(36),
         },
         fullName: {
           allowNull: false,
           type: Sequelize.STRING,
+          field: 'full_name',
         },
         email: {
           allowNull: false,
@@ -25,48 +26,51 @@ module.exports = {
         professionalId: {
           allowNull: false,
           type: Sequelize.INTEGER,
-          onUpdate: "CASCADE",
-          onDelete: "CASCADE",
-          field: "professional_id",
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+          field: 'professional_id',
           references: {
-            model: "Professionals",
-            key: "id",
+            model: 'Professionals',
+            key: 'id',
           },
         },
         addressId: {
           allowNull: false,
           type: Sequelize.INTEGER,
-          onUpdate: "CASCADE",
-          onDelete: "CASCADE",
-          field: "address_id",
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+          field: 'address_id',
           references: {
-            model: "Addresses",
-            key: "id",
+            model: 'Addresses',
+            key: 'id',
           },
         },
         horaryId: {
           type: Sequelize.INTEGER,
           allowNull: false,
-          onUpdate: "CASCADE",
-          onDelete: "CASCADE",
-          field: "horary_id",
+          onUpdate: 'CASCADE',
+          onDelete: 'CASCADE',
+          field: 'horary_id',
           references: {
-            model: "Horaries",
-            key: "id",
+            model: 'Horaries',
+            key: 'id',
           },
         },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE(3),
+          field: 'created_at',
         },
         updatedAt: {
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.DATE(3),
+          field: 'updated_at',
         },
-      }, { underscored: true  }
-    )
+      },
+      { underscored: true }
+    );
   },
   async down(queryInterface, _Sequelize) {
-    await queryInterface.dropTable("Clients")
+    await queryInterface.dropTable('Clients');
   },
-}
+};

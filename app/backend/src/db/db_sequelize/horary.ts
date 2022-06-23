@@ -1,12 +1,12 @@
-import { BuildOptions, DataTypes, Model, Sequelize } from "sequelize"
+import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
 
 type UserStatic = typeof Model
   & { associate: (models: any) => void }
   & { new(values?: Record<string, unknown>, options?: BuildOptions): any }
 
 const horaryDAO = (sequelize: Sequelize) => {
-  const Horary = <UserStatic> sequelize.define(
-    "Horary",
+  const Horary = <UserStatic>sequelize.define(
+    'Horary',
     {
       id: {
         allowNull: false,
@@ -40,17 +40,17 @@ const horaryDAO = (sequelize: Sequelize) => {
       },
     },
     {
-      tableName: "Horaries",
+      tableName: 'Horaries',
       underscored: true,
     }
-  )
+  );
 
   Horary.associate = (models) => {
     Horary.belongsTo(models.Client,
-      { foreignKey: "client_id", as: "clients" })
-  }
+      { foreignKey: 'client_id', as: 'clients' });
+  };
 
-  return Horary
-}
+  return Horary;
+};
 
-export default horaryDAO
+export default horaryDAO;
