@@ -13,7 +13,6 @@ const ClientSchema = async (value: unknown): Promise<IClient> => {
   });
 
   const result = await runSchema(schema, value);
-
   return result;
 };
 

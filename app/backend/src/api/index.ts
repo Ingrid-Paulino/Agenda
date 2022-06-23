@@ -1,17 +1,21 @@
-import express from "express"
+import express from 'express';
+import 'express-async-errors';
+import bodyParser from 'body-parser';
+import routes from '../api/routes';
+import { errorHandlerMiddleware } from './middlewares/errorHandlerMiddleware';
 
-const api = express()
+const api = express();
 
-api.use(express.json())
+api.use(express.json());
+api.use(bodyParser.json());
 
-// const PORT = 3004
+api.get('/', (_req, res) => {
+  res.send('Começando projeto');
+});
 
-api.get("/", (_req, res) => {
-  res.send("Começando projeto")
-})
+api.use(routes);
 
-// api.listen(PORT, () => {
-//   console.log("Rodando na porta 3004")
-// })
+api.use(errorHandlerMiddleware);
 
-export default api
+
+export default api;
