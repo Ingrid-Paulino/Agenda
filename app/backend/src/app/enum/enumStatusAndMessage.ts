@@ -11,5 +11,5 @@ export enum StatusCodes {
 }
 
 export enum MSG {
-  
+  EXISTING_USER = 'Usuário existente'
 }

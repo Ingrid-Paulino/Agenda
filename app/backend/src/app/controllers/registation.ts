@@ -19,4 +19,4 @@ export default {
 };
 
 // TODO Criptografar senha do usuário
-// TODO Organizar os status
+// TODO Deletar ferramentas que não vou usar mais
