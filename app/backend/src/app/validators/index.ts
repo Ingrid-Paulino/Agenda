@@ -1,5 +1,5 @@
 import { Schema } from 'joi';
-import objError from '../utils';
+import objError from '../helpers/entryMsgStatusError';
 import { StatusCodes } from '../enum/enumStatusAndMessage';
 
 export const runSchema = async (schema: Schema, unknown: unknown) => {
