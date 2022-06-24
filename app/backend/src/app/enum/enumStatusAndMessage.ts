@@ -11,5 +11,6 @@ export enum StatusCodes {
 }
 
 export enum MSG {
-  EXISTING_USER = 'Usuário existente'
+  EXISTING_USER = 'Usuário existente',
+  INCORRECT_PASSWORD = 'Senha incorreta'
 }

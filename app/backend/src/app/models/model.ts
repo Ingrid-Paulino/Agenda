@@ -6,9 +6,10 @@ const getAll = async (sequelizeDAO: any): Promise<Client[]> => {
   return result;
 };
 
-const create = async (data: IClient, sequelizeDAO: any): Promise<Client> => {
+const create = async (data: IClient, sequelizeDAO: any, hash: string): Promise<Client> => {
   const id = crypto.randomUUID();
-  const result = await sequelizeDAO.create({ id, ...data, createdAt: new Date() });
+
+  const result = await sequelizeDAO.create({ id, ...data, password: hash, createdAt: new Date() });
   return result;
 };
 
