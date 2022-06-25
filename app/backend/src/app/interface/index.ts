@@ -3,13 +3,13 @@ export interface Entity {
   updatedAt?: Date
 }
 
-export interface DatasComum  {
-  fullName: string
+export interface commonDates  {
+  fullName?: string
   email: string
   password: string
 }
 
-export interface IClient extends DatasComum, Entity {
+export interface IClient extends commonDates, Entity {
   professionalId: number
   addressId: number
   horaryId: number

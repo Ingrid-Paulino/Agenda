@@ -1,6 +1,6 @@
 import { IClient, Client } from '../interface';
 import validateSchema from '../schemas';
-import RegisterService from '../services/registration';
+import RegisterService from '../services/registrationServices';
 
 const getAll = async (): Promise<Client[]> => {
   const result = await RegisterService.getAll();
@@ -17,6 +17,3 @@ export default {
   create,
   getAll
 };
-
-// TODO Criptografar senha do usuário
-// TODO Deletar ferramentas que não vou usar mais

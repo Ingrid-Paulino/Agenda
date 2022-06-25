@@ -11,7 +11,6 @@ db_sequelize.authenticate()
   })
   .catch((error: Error) => {
     console.error(error);
-    console.log('oiii');
 
     process.exit(1);
   });
