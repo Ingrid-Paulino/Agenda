@@ -4,9 +4,7 @@ import loginService from '../services/loginService';
 
 
 const login = async (data: commonDates) => {
-  const { email, password } = data;
-
-  const response = await loginService.login({ email, password });
+  const response = await loginService.login(data);
   return response;
 };
 

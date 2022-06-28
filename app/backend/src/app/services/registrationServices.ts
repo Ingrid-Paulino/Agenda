@@ -23,7 +23,7 @@ const create = async (data: IClient): Promise<Client> => {
   const findClient = clientsAll.find((client: IClient) => client.email === data.email);
   if (findClient) throw entryMsgStatusError(StatusCodes.CONFLICT, MSG.EXISTING_USER);
 
-  const result = await Model.create<IClient>(data, ClientDAO, hash);
+  const result = await Model.create<IClient, Client>(data, ClientDAO, hash);
   return result;
 };
 

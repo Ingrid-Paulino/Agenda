@@ -18,3 +18,13 @@ export interface IClient extends commonDates, Entity {
 export interface Client extends IClient {
   id: string
 }
+
+export interface IAddress extends Entity{
+  cep: string
+  number: number
+  complement: string
+}
+
+export interface Address extends IAddress {
+  id: string
+}

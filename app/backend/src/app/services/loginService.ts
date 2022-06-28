@@ -7,32 +7,16 @@ import { StatusCodes, MSG } from '../enum/enumStatusAndMessage';
 import bcrypt from 'bcryptjs';
 import createToken from './createToken';
 
-
-const getAll = async (): Promise<Client[]> => {
-  const result = await Model.getAll(ClientDAO);
-  if (!result) throw entryMsgStatusError(StatusCodes.OK, '[]');
-  return result;
-};
-
-
 const login = async (data: commonDates) => {
-  const allClients = await getAll();
+  const objClient = await Model.findAnything<Client>(data, ClientDAO);
 
-  const findCorect = allClients.map(async (client): Promise<boolean | undefined> => {
-    const match = await bcrypt.compare(data.password, client.password);
+  const checkPassword = await bcrypt.compare(data.password, objClient.password);
 
-    if (client.email === data.email && match) {
-      // console.log('existe email e senha!');
-      return true;
-    }
-  });
-
-  if (!findCorect) {
-    return entryMsgStatusError(StatusCodes.UNAUTHORIZED, MSG.INVALID_FIELDS);
+  if (!checkPassword) {
+    throw entryMsgStatusError(StatusCodes.UNAUTHORIZED, MSG.INVALID_FIELDS);
   }
 
   const token = createToken(data.email);
-
   return token;
 };
 
