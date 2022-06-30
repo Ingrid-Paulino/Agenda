@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('Professionals', [
       {
         id: 1,
-        fullName: 'Heloisa Ezequiel Paulino Vasconcellos Dias',
+        full_name: 'Heloisa Ezequiel Paulino Vasconcellos Dias',
         email: 'heloizaezequielp851@gmail.com',
         password: '123456789',
         specialties: 'oiii',

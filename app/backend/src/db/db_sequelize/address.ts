@@ -10,9 +10,9 @@ const addressDAO = (sequelize: Sequelize) => {
     {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        // autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(36),
       },
       cep: {
         allowNull: false,
@@ -29,10 +29,12 @@ const addressDAO = (sequelize: Sequelize) => {
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE(3),
+        field: 'created_at',
       },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE(3),
+        field: 'updated_at',
       },
     },
     {

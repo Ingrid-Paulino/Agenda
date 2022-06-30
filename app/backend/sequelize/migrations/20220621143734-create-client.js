@@ -36,7 +36,7 @@ module.exports = {
         },
         addressId: {
           allowNull: false,
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
           field: 'address_id',

@@ -6,9 +6,9 @@ module.exports = {
       {
         id: {
           allowNull: false,
-          autoIncrement: true,
+          // autoIncrement: true,
           primaryKey: true,
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING(36),
         },
         cep: {
           allowNull: false,
@@ -25,12 +25,16 @@ module.exports = {
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE(3),
+          field: 'created_at',
         },
         updatedAt: {
           allowNull: false,
           type: Sequelize.DATE(3),
+          field: 'updated_at',
         },
-      }, { underscored: true });
+      },
+      { underscored: true }
+    );
   },
   async down(queryInterface, _Sequelize) {
     await queryInterface.dropTable('Addresses');

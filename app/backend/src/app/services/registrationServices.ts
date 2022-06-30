@@ -8,7 +8,7 @@ import descriptografia from '../utils/descriptografia';
 
 
 const getAll = async (): Promise<Client[]> => {
-  const result = await Model.getAll(ClientDAO);
+  const result = await Model.getAll<Client>(ClientDAO);
   if (!result) throw entryMsgStatusError(StatusCodes.OK, '[]');
   return result;
 };

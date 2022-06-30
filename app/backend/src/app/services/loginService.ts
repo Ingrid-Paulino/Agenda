@@ -8,7 +8,7 @@ import bcrypt from 'bcryptjs';
 import createToken from './createToken';
 
 const login = async (data: commonDates) => {
-  const objClient = await Model.findAnything<Client>(data, ClientDAO);
+  const objClient = await Model.findAnything<commonDates, Client>(data, ClientDAO);
 
   const checkPassword = await bcrypt.compare(data.password, objClient.password);
 
