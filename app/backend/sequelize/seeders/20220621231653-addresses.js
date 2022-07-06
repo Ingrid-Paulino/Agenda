@@ -19,6 +19,14 @@ module.exports = {
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
+      {
+        id: 3,
+        cep: '31330-509',
+        number: 395,
+        complement: 'ap4051, b1',
+        created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+        updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+      },
     ]);
   },
 

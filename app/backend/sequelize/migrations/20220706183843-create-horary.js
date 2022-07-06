@@ -1,26 +1,41 @@
-'use strict';
+"use strict";
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      'Admins',
+      "Horaries",
       {
         id: {
           allowNull: false,
-          autoIncrement: true,
+          // autoIncrement: true,
           primaryKey: true,
+          type: Sequelize.STRING(36),
+        },
+        date: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+        hour: {
+          allowNull: false,
+          type: Sequelize.TIME,
+        },
+        specialty: {
+          allowNull: false,
+          type: Sequelize.STRING,
+        },
+        price: {
+          allowNull: false,
           type: Sequelize.INTEGER,
         },
-        fullName: {
+        clientId: {
           allowNull: false,
           type: Sequelize.STRING,
-        },
-        email: {
-          allowNull: false,
-          type: Sequelize.STRING,
-        },
-        password: {
-          allowNull: false,
-          type: Sequelize.STRING,
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE",
+          field: "client_id",
+          references: {
+            model: "Clients",
+            key: "id",
+          },
         },
         createdAt: {
           allowNull: false,
@@ -35,6 +50,6 @@ module.exports = {
     );
   },
   async down(queryInterface, _Sequelize) {
-    await queryInterface.dropTable('Admins');
+    await queryInterface.dropTable("Horaries");
   },
 };

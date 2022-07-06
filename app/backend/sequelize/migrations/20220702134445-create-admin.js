@@ -2,7 +2,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      'Professionals',
+      'Admins',
       {
         id: {
           allowNull: false,
@@ -21,10 +21,6 @@ module.exports = {
         },
         password: {
           allowNull: false,
-          type: Sequelize.STRING,
-        },
-        specialties: {
-          allowNull: true,
           type: Sequelize.STRING,
         },
         type: {
@@ -57,6 +53,6 @@ module.exports = {
     );
   },
   async down(queryInterface, _Sequelize) {
-    await queryInterface.dropTable('Professionals');
+    await queryInterface.dropTable('Admins');
   },
 };

@@ -50,17 +50,6 @@ const clientDAO = (sequelize: Sequelize) => {
           key: 'id',
         },
       },
-      horaryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'horary_id',
-        references: {
-          model: 'Horaries',
-          key: 'id',
-        },
-      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE(3),

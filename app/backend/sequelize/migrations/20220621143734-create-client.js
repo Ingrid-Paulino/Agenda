@@ -25,7 +25,7 @@ module.exports = {
         },
         professionalId: {
           allowNull: false,
-          type: Sequelize.INTEGER,
+          type: Sequelize.STRING,
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
           field: 'professional_id',
@@ -42,17 +42,6 @@ module.exports = {
           field: 'address_id',
           references: {
             model: 'Addresses',
-            key: 'id',
-          },
-        },
-        horaryId: {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          onUpdate: 'CASCADE',
-          onDelete: 'CASCADE',
-          field: 'horary_id',
-          references: {
-            model: 'Horaries',
             key: 'id',
           },
         },

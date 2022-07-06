@@ -4,9 +4,9 @@ type UserStatic = typeof Model
   & { associate: (models: any) => void }
   & { new(values?: Record<string, unknown>, options?: BuildOptions): any }
 
-const addressDAO = (sequelize: Sequelize) => {
-  const Address = <UserStatic>sequelize.define(
-    'Address',
+const specialtieDAO = (sequelize: Sequelize) => {
+  const Specialtie = <UserStatic>sequelize.define(
+    'Specialtie',
     {
       id: {
         allowNull: false,
@@ -14,17 +14,24 @@ const addressDAO = (sequelize: Sequelize) => {
         primaryKey: true,
         type: DataTypes.STRING(36),
       },
-      cep: {
+      specialtie: {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      number: {
+      price: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
-      complement: {
+      clientId: {
         allowNull: false,
         type: DataTypes.STRING,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'client_id',
+        references: {
+          model: 'Clients',
+          key: 'id',
+        },
       },
       createdAt: {
         allowNull: false,
@@ -32,33 +39,22 @@ const addressDAO = (sequelize: Sequelize) => {
         field: 'created_at',
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.DATE(3),
         field: 'updated_at',
       },
     },
     {
-      tableName: 'Addresses',
-      underscored: true,
-    });
+      tableName: 'Specialties',
+      underscored: true
+    }
+  );
 
-  // hasOne -> possui um
-  // hasMany -> possui vários
-  // belongsTo -> pertence a um
-  // belongsMany -> pertence a vários
-
-  Address.associate = (models) => {
-    Address.belongsTo(models.Client,
-      { foreignKey: 'address_id', as: 'clients' });
-
-    Address.belongsTo(models.Professional,
-      { foreignKey: 'address_id', as: 'professionals' });
-
-    Address.belongsTo(models.Admin,
-      { foreignKey: 'address_id', as: 'admins' });
+  Specialtie.associate = (models) => {
+    Specialtie.hasOne(models.Professional,
+      { foreignKey: 'specialtie_id', as: 'professionals' });
   };
 
-  return Address;
+  return Specialtie;
 };
-
-export default addressDAO;
+export default specialtieDAO;

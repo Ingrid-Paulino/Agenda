@@ -9,9 +9,10 @@ module.exports = {
         email: 'heloizaezequielp851@gmail.com',
         password: '123456789',
         specialties: 'oiii',
+        type: 'profissional',
         address_id: 2,
-        createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
-        updatedAt: Sequelize.literal('CURRENT_TIMESTAMP'),
+        created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+        updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         // specialty: [
         //   {
         //     specialitie: 'mão',

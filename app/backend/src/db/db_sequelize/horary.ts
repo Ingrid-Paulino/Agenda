@@ -30,6 +30,17 @@ const horaryDAO = (sequelize: Sequelize) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
+      clientId: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'client_id',
+        references: {
+          model: 'Clients',
+          key: 'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE(3),

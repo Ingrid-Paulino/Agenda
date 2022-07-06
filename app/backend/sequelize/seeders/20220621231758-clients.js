@@ -10,7 +10,6 @@ module.exports = {
         password: '123456788',
         professional_id: 1,
         address_id: 1,
-        horary_id: 1,
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },

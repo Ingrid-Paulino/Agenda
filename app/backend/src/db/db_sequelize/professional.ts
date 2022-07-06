@@ -10,13 +10,14 @@ const professionalDAO = (sequelize: Sequelize) => {
     {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        // autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(36),
       },
       fullName: {
         allowNull: false,
         type: DataTypes.STRING,
+        field: 'full_name',
       },
       email: {
         allowNull: false,
@@ -30,13 +31,30 @@ const professionalDAO = (sequelize: Sequelize) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      type: {
+        allowNull: true,
+        type: DataTypes.STRING,
+      },
+      addressId: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'address_id',
+        references: {
+          model: 'Addresses',
+          key: 'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE(3),
+        field: 'created_at',
       },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE(3),
+        field: 'updated_at',
       },
     },
     {
@@ -51,6 +69,10 @@ const professionalDAO = (sequelize: Sequelize) => {
 
     Professional.belongsTo(models.Client,
       { foreignKey: 'client_id', as: 'clients' });
+
+
+    Professional.belongsTo(models.Specialtie,
+      { foreignKey: 'specialtie_id', as: 'specialties' });
   };
 
   return Professional;

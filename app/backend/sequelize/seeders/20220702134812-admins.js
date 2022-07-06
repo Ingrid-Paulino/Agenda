@@ -5,11 +5,13 @@ module.exports = {
     await queryInterface.bulkInsert('Admins', [
       {
         id: 1,
-        fullName: 'Ingrid Paulino Pinheiro Vasconcellos Dias',
+        full_name: 'Ingrid Paulino Pinheiro Vasconcellos Dias',
         email: 'ingridpaulino1012@gmail.com',
         password: '12345678',
-        createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
-        updatedAt: Sequelize.literal('CURRENT_TIMESTAMP'),
+        type: 'admin',
+        address_id: 3,
+        created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+        updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     ]);
   },
