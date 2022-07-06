@@ -1,5 +1,5 @@
 import express from 'express';
-import { registerRoute, loginRoute, addressRoute, professionalRoute, adminRoute } from '../routes/routes';
+import { registerRoute, loginRoute, addressRoute, professionalRoute, adminRoute, specialtiesRoute } from '../routes/routes';
 
 const route = express.Router({ mergeParams: true });
 
@@ -9,6 +9,7 @@ route.use('/login', loginRoute);
 route.use('/address', addressRoute);
 route.use('/professional', professionalRoute);
 route.use('/admin', adminRoute);
+route.use('/specialtie', specialtiesRoute);
 
 
 

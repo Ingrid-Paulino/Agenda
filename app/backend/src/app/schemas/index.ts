@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { IClient, IProfessional, commonDates, IAddress, IAdmin } from '../interface';
+import { IClient, IProfessional, commonDates, IAddress, IAdmin, ISpecialtie } from '../interface';
 import { runSchema } from '../validators';
 
 const ClientSchema = async (value: unknown): Promise<IClient> => {
@@ -64,12 +64,23 @@ const AdminSchema = async (value: unknown): Promise<IAdmin> => {
   return result;
 };
 
+const SpecialtiesSchema = async (value: unknown): Promise<ISpecialtie> => {
+  const schema = Joi.object<ISpecialtie>({
+    specialtie: Joi.string().required(),
+    price: Joi.number().required(),
+    description: Joi.string().required(),
+    clientId: Joi.string().required()
+  });
 
+  const result = await runSchema(schema, value);
+  return result;
+};
 
 export default {
   ClientSchema,
   ProfessionalSchema,
   LoginSchema,
   AddressSchema,
-  AdminSchema
+  AdminSchema,
+  SpecialtiesSchema
 };

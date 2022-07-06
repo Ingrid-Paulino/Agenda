@@ -55,7 +55,7 @@ export interface ISpecialtie extends Entity {
   specialtie: string
   price: string
   description: string
-  professionalId: Professional['id']
+  clientId: Client['id']
 }
 
 export interface Specialtie extends ISpecialtie {

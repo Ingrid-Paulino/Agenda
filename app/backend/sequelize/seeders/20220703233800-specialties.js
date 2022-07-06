@@ -1,20 +1,21 @@
-"use strict";
+'use strict';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert("Specialties", [
+    await queryInterface.bulkInsert('Specialties', [
       {
         id: 1,
-        specialtie: "pé",
+        specialtie: 'pé',
         price: 15,
+        description: 'bla bla bla',
         client_id: 1,
-        created_at: Sequelize.literal("CURRENT_TIMESTAMP"),
-        updated_at: Sequelize.literal("CURRENT_TIMESTAMP"),
+        created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
+        updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
     ]);
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete("Specialties", null, {});
+    await queryInterface.bulkDelete('Specialties', null, {});
   },
 };

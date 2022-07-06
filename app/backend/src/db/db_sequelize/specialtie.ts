@@ -22,6 +22,10 @@ const specialtieDAO = (sequelize: Sequelize) => {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
+      description: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
       clientId: {
         allowNull: false,
         type: DataTypes.STRING,

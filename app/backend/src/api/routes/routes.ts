@@ -4,13 +4,14 @@ import loginController from '../../app/controllers/loginController';
 import addressController from '../../app/controllers/addressController';
 import professionalController from '../../app/controllers/professionalController';
 import adminController from '../../app/controllers/adminController';
+import specialtiesController from '../../app/controllers/specialtiesController';
 
 
 const registerRoute = express.Router({ mergeParams: true });
 const loginRoute = express.Router({ mergeParams: true });
 const addressRoute = express.Router({ mergeParams: true });
 const professionalRoute = express.Router({ mergeParams: true });
-
+const specialtiesRoute = express.Router({ mergeParams: true });
 const adminRoute = express.Router({ mergeParams: true });
 
 
@@ -61,10 +62,21 @@ adminRoute.post('/', async (req, res) => {
   return res.status(201).json(result);
 });
 
+specialtiesRoute.get('/', async (req, res) => {
+  const result = await specialtiesController.getAll();
+  return res.status(200).json(result);
+});
+
+specialtiesRoute.post('/', async (req, res) => {
+  const result = await specialtiesController.create(req.body);
+  return res.status(200).json(result);
+});
+
 export {
   registerRoute,
   loginRoute,
   addressRoute,
   professionalRoute,
-  adminRoute
+  adminRoute,
+  specialtiesRoute
 };
