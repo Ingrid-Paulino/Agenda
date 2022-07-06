@@ -2,12 +2,16 @@ import express from 'express';
 import registerController from '../../app/controllers/registationController';
 import loginController from '../../app/controllers/loginController';
 import addressController from '../../app/controllers/addressController';
+import professionalController from '../../app/controllers/professionalController';
+import adminController from '../../app/controllers/adminController';
+
 
 const registerRoute = express.Router({ mergeParams: true });
 const loginRoute = express.Router({ mergeParams: true });
-
 const addressRoute = express.Router({ mergeParams: true });
+const professionalRoute = express.Router({ mergeParams: true });
 
+const adminRoute = express.Router({ mergeParams: true });
 
 
 registerRoute.post('/', async (req, res) => {
@@ -27,13 +31,40 @@ loginRoute.post('/', async (req, res) => {
   return res.status(201).json({token: result});
 });
 
+addressRoute.get('/', async (req, res) => {
+  const result = await addressController.getAll();
+  return res.status(200).json(result);
+});
+
 addressRoute.post('/', async (req, res) => {
   const result = await addressController.create(req.body);
+  return res.status(201).json(result);
+});
+
+professionalRoute.get('/', async (req, res) => {
+  const result = await professionalController.getAll();
   return res.status(200).json(result);
+});
+
+professionalRoute.post('/', async (req, res) => {
+  const result = await professionalController.create(req.body);
+  return res.status(201).json(result);
+});
+
+adminRoute.get('/', async (req, res) => {
+  const result = await adminController.getAll();
+  return res.status(200).json(result);
+});
+
+adminRoute.post('/', async (req, res) => {
+  const result = await adminController.create(req.body);
+  return res.status(201).json(result);
 });
 
 export {
   registerRoute,
   loginRoute,
-  addressRoute
+  addressRoute,
+  professionalRoute,
+  adminRoute
 };

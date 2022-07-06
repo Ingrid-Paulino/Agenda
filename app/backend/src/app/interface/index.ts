@@ -9,6 +9,15 @@ export interface commonDates  {
   password: string
 }
 
+export interface IAdmin extends commonDates, Entity {
+  type: string
+  addressId: Address['id']
+}
+
+export interface Admin extends IAdmin {
+  id: string
+}
+
 export interface IClient extends commonDates, Entity {
   professionalId: number
   addressId: number
@@ -26,5 +35,29 @@ export interface IAddress extends Entity{
 }
 
 export interface Address extends IAddress {
+  id: string
+}
+
+export interface IProfessional extends Entity {
+  fullName: string
+  email: string
+  password: string
+  specialties: string
+  type: string
+  addressId: Address['id']
+}
+
+export interface Professional extends IProfessional {
+  id: string
+}
+
+export interface ISpecialtie extends Entity {
+  specialtie: string
+  price: string
+  description: string
+  professionalId: Professional['id']
+}
+
+export interface Specialtie extends ISpecialtie {
   id: string
 }
