@@ -2,8 +2,13 @@ import crypto from 'crypto';
 import { commonDates } from '../interface';
 
 const getAll = async <T> (sequelizeDAO: any): Promise<T[]> => {
-  const result = await sequelizeDAO.findAll();
-  return result;
+  try {
+    const result = await sequelizeDAO.findAll();
+    return result;
+  } catch (error) {
+    console.log('error', error);
+    throw new Error(`error ${error}`);
+  }
 };
 
 const create = async <T, T2>(data: T, sequelizeDAO: any, hash: string): Promise<T2> => {

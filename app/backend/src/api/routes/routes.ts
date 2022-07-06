@@ -5,6 +5,7 @@ import addressController from '../../app/controllers/addressController';
 import professionalController from '../../app/controllers/professionalController';
 import adminController from '../../app/controllers/adminController';
 import specialtiesController from '../../app/controllers/specialtiesController';
+import horary from '../../app/controllers/horary';
 
 
 const registerRoute = express.Router({ mergeParams: true });
@@ -13,6 +14,7 @@ const addressRoute = express.Router({ mergeParams: true });
 const professionalRoute = express.Router({ mergeParams: true });
 const specialtiesRoute = express.Router({ mergeParams: true });
 const adminRoute = express.Router({ mergeParams: true });
+const horaryRoute = express.Router({ mergeParams: true });
 
 
 registerRoute.post('/', async (req, res) => {
@@ -72,11 +74,24 @@ specialtiesRoute.post('/', async (req, res) => {
   return res.status(200).json(result);
 });
 
+horaryRoute.get('/', async (req, res) => {
+  console.log('oiiiii1');
+
+  const result = await horary.getAll();
+  return res.status(200).json(result);
+});
+
+horaryRoute.post('/', async (req, res) => {
+  const result = await horary.create(req.body);
+  return res.status(200).json(result);
+});
+
 export {
   registerRoute,
   loginRoute,
   addressRoute,
   professionalRoute,
   adminRoute,
-  specialtiesRoute
+  specialtiesRoute,
+  horaryRoute
 };

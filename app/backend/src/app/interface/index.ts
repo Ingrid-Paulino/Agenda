@@ -61,3 +61,15 @@ export interface ISpecialtie extends Entity {
 export interface Specialtie extends ISpecialtie {
   id: string
 }
+
+export interface IHorary extends Entity {
+  date: string
+  hour: string
+  specialty: string
+  price: number
+  clientId: Client['id']
+}
+
+export interface Horary extends IHorary {
+  id: string
+}

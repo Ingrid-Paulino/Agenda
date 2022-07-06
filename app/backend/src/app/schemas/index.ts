@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { IClient, IProfessional, commonDates, IAddress, IAdmin, ISpecialtie } from '../interface';
+import { IClient, IProfessional, commonDates, IAddress, IAdmin, ISpecialtie, IHorary } from '../interface';
 import { runSchema } from '../validators';
 
 const ClientSchema = async (value: unknown): Promise<IClient> => {
@@ -7,9 +7,9 @@ const ClientSchema = async (value: unknown): Promise<IClient> => {
     fullName: Joi.string().min(10).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(16).required(),
-    professionalId: Joi.number().required(),
-    addressId: Joi.number().required(),
-    horaryId: Joi.number().required(),
+    professionalId: Joi.string().required(),
+    addressId: Joi.string().required(),
+    horaryId: Joi.string().required(),
   });
 
   const result = await runSchema(schema, value);
@@ -23,7 +23,7 @@ const ProfessionalSchema = async (value: unknown): Promise<IProfessional> => {
     password: Joi.string().min(6).max(16).required(),
     specialties: Joi.string().required(),
     type: Joi.string().required(),
-    addressId: Joi.number().required(),
+    addressId: Joi.string().required(),
   });
 
   const result = await runSchema(schema, value);
@@ -57,7 +57,7 @@ const AdminSchema = async (value: unknown): Promise<IAdmin> => {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(16).required(),
     type: Joi.string().required(),
-    addressId: Joi.number().required()
+    addressId: Joi.string().required()
   });
 
   const result = await runSchema(schema, value);
@@ -76,11 +76,25 @@ const SpecialtiesSchema = async (value: unknown): Promise<ISpecialtie> => {
   return result;
 };
 
+const HorarySchema = async (value: unknown): Promise<IHorary> => {
+  const schema = Joi.object<IHorary>({
+    date: Joi.string().required(),
+    hour: Joi.string().required(),
+    specialty: Joi.string().required(),
+    price: Joi.number().required(),
+    clientId: Joi.string().required()
+  });
+
+  const result = await runSchema(schema, value);
+  return result;
+};
+
 export default {
   ClientSchema,
   ProfessionalSchema,
   LoginSchema,
   AddressSchema,
   AdminSchema,
-  SpecialtiesSchema
+  SpecialtiesSchema,
+  HorarySchema
 };

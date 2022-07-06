@@ -1,4 +1,3 @@
-
 import { SpecialtieDAO } from '../../db/db_sequelize';
 import { StatusCodes } from '../enum/enumStatusAndMessage';
 import entryMsgStatusError from '../helpers/entryMsgStatusError';

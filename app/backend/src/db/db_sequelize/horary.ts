@@ -44,10 +44,12 @@ const horaryDAO = (sequelize: Sequelize) => {
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE(3),
+        field: 'created_at',
       },
       updatedAt: {
         allowNull: false,
         type: DataTypes.DATE(3),
+        field: 'updated_at',
       },
     },
     {
