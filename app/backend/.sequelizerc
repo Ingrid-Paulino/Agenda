@@ -6,7 +6,7 @@ module.exports = {
   // 'agenda' ao final é o nome do meu banco
   // '123456' -> senha do banco
   url: process.env.MYSQL_URI || "mysql://root:123456@localhost:3002/agenda",
-  "models-path": path.resolve(__dirname, "src", "db"),
+  "models-path": path.resolve(__dirname, "src", "db", "db_sequelize"),
   "seeders-path": path.resolve(basePath, "seeders"),
   "migrations-path": path.resolve(basePath, "migrations"),
 };

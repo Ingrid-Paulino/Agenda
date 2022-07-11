@@ -29,7 +29,7 @@ export default function Home() {
       <main>
         <img
           className="homeImg"
-          src="../../images/imgHome1.png"
+          src="../images/imgHome1.png"
           alt="imgUnhaHome"
         />
       </main>

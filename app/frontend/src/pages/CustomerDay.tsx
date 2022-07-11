@@ -56,7 +56,7 @@ export default function CustomerDay() {
           <img
             src={profile}
             alt="Pagina de perfil"
-            onClick={() => navigate("/customerHours")}
+            onClick={() => navigate("/customerProfile")}
           />
           <p>PERFIL</p>
         </div>
@@ -64,7 +64,7 @@ export default function CustomerDay() {
           <img
             src={hour}
             alt="Pagina de horarios do cliente"
-            onClick={() => navigate("/customerProfile")}
+            onClick={() => navigate("/customerHours")}
           />
           <p>HORARIOS</p>
         </div>

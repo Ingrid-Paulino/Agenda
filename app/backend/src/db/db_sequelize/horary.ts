@@ -8,51 +8,18 @@ const horaryDAO = (sequelize: Sequelize) => {
   const Horary = <UserStatic>sequelize.define(
     'Horary',
     {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER,
-      },
-      date: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
-      hour: {
-        allowNull: false,
-        type: DataTypes.TIME,
-      },
-      specialty: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      price: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-      },
+      id: { type: DataTypes.STRING(36), primaryKey: true },
+      date: DataTypes.DATE,
+      hour: DataTypes.TIME,
+      specialty: DataTypes.STRING,
+      price: DataTypes.INTEGER,
       clientId: {
-        allowNull: false,
         type: DataTypes.STRING,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'client_id',
-        references: {
-          model: 'Clients',
-          key: 'id',
-        },
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE(3),
-        field: 'created_at',
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE(3),
-        field: 'updated_at',
+        // foreignKey: true
       },
     },
     {
+      timestamps: true,
       tableName: 'Horaries',
       underscored: true,
     }

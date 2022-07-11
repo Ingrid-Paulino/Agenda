@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { ClientDAO } from '../../db/db_sequelize';
+import { ClientDAO, ProfessionalDAO } from '../../db/db_sequelize';
 import { MSG, StatusCodes } from '../enum/enumStatusAndMessage';
 import entryMsgStatusError from '../helpers/entryMsgStatusError';
 import { Client, IClient } from '../interface';
@@ -8,7 +8,7 @@ import descriptografia from '../utils/descriptografia';
 
 
 const getAll = async (): Promise<Client[]> => {
-  const result = await Model.getAll<Client>(ClientDAO);
+  const result = await Model.getAllAdmin<Client>(ClientDAO, ProfessionalDAO, 'professionals');
   if (!result) throw entryMsgStatusError(StatusCodes.OK, '[]');
   return result;
 };

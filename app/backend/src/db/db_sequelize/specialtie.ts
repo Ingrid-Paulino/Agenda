@@ -4,59 +4,34 @@ type UserStatic = typeof Model
   & { associate: (models: any) => void }
   & { new(values?: Record<string, unknown>, options?: BuildOptions): any }
 
+/** //JSdocs
+ * @param {import('sequelize').Sequelize } sequelize
+ * @param {import('sequelize').DataTypes} DataTypes
+ */
+
 const specialtieDAO = (sequelize: Sequelize) => {
   const Specialtie = <UserStatic>sequelize.define(
     'Specialtie',
     {
-      id: {
-        allowNull: false,
-        // autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.STRING(36),
-      },
-      specialtie: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      price: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-      },
-      description: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
+      id: { type: DataTypes.STRING(36), primaryKey: true },
+      specialtie: DataTypes.STRING,
+      price: DataTypes.INTEGER,
+      description: DataTypes.STRING,
       clientId: {
-        allowNull: false,
         type: DataTypes.STRING,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'client_id',
-        references: {
-          model: 'Clients',
-          key: 'id',
-        },
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE(3),
-        field: 'created_at',
-      },
-      updatedAt: {
-        allowNull: true,
-        type: DataTypes.DATE(3),
-        field: 'updated_at',
+        // foreignKey: true
       },
     },
     {
+      timestamps: true,
       tableName: 'Specialties',
       underscored: true
     }
   );
 
   Specialtie.associate = (models) => {
-    Specialtie.hasOne(models.Professional,
-      { foreignKey: 'specialtie_id', as: 'professionals' });
+    Specialtie.belongsTo(models.Professional,
+      { foreignKey: 'professional_id', as: 'professionals' });
   };
 
   return Specialtie;
