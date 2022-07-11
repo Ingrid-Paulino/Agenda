@@ -8,71 +8,33 @@ const professionalDAO = (sequelize: Sequelize) => {
   const Professional = <UserStatic>sequelize.define(
     'Professional',
     {
-      id: {
-        allowNull: false,
-        // autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.STRING(36),
-      },
-      fullName: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        field: 'full_name',
-      },
-      email: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      password: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      specialties: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      type: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
+      id: { type: DataTypes.STRING(36), primaryKey: true },
+      fullName: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
+      type: DataTypes.STRING,
+      specialties: DataTypes.STRING,
       addressId: {
-        allowNull: false,
         type: DataTypes.STRING,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'address_id',
-        references: {
-          model: 'Addresses',
-          key: 'id',
-        },
-      },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE(3),
-        field: 'created_at',
-      },
-      updatedAt: {
-        allowNull: false,
-        type: DataTypes.DATE(3),
-        field: 'updated_at',
+        // foreignKey: true
       },
     },
     {
+      timestamps: true,
       tableName: 'Professionals',
       underscored: true,
     }
   );
 
   Professional.associate = (models) => {
-    Professional.hasOne(models.Address,
-      { foreignKey: 'professional_id', as: 'addresses' });
+    Professional.hasMany(models.Address,
+      { foreignKey: 'professionalId', as: 'addresses' });
 
-    Professional.belongsTo(models.Client,
-      { foreignKey: 'client_id', as: 'clients' });
+    Professional.hasMany(models.Client,
+      { foreignKey: 'professionalId', as: 'clients' });
 
-
-    Professional.belongsTo(models.Specialtie,
-      { foreignKey: 'specialtie_id', as: 'specialties' });
+    Professional.hasMany(models.Specialtie,
+      { foreignKey: 'professionalId', as: 'specialties' });
   };
 
   return Professional;

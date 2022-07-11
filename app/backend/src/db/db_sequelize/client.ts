@@ -9,73 +9,36 @@ const clientDAO = (sequelize: Sequelize) => {
   const Client = <UserStatic>sequelize.define(
     'Client',
     {
-      id: {
-        allowNull: false,
-        // autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.STRING(36),
-      },
-      fullName: {
-        allowNull: false,
-        type: DataTypes.STRING,
-        field: 'full_name',
-      },
-      email: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
-      password: {
-        allowNull: false,
-        type: DataTypes.STRING,
-      },
+      id: { type: DataTypes.STRING(36), primaryKey: true },
+      fullName: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
       professionalId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'professional_id',
-        references: {
-          model: 'Professionals',
-          key: 'id',
-        },
+        type: DataTypes.STRING,
+        // foreignKey: true
       },
       addressId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'address_id',
-        references: {
-          model: 'Addresses',
-          key: 'id',
-        },
+        type: DataTypes.STRING,
+        // foreignKey: true
       },
-      createdAt: {
-        allowNull: false,
-        type: DataTypes.DATE(3),
-        field: 'created_at',
-      },
-      updatedAt: {
-        allowNull: true,
-        type: DataTypes.DATE(3),
-        field: 'updated_at',
-      },
+
     },
     {
+      timestamps: true,
       tableName: 'Clients',
       underscored: true
     }
   );
 
   Client.associate = (models) => {
-    Client.hasOne(models.Professional,
-      { foreignKey: 'client_id', as: 'professionals' });
-
     Client.hasMany(models.Horary,
-      { foreignKey: 'client_id', as: 'horaries' });
+      { foreignKey: 'clientId', as: 'horaries' });
 
-    Client.hasOne(models.Address,
-      { foreignKey: 'client_id', as: 'addresses' });
+    Client.hasMany(models.Address,
+      { foreignKey: 'clientId', as: 'addresses' });
+
+    Client.belongsTo(models.Professional,
+      { foreignKey: 'professionalId', as: 'professionals' });
   };
 
 

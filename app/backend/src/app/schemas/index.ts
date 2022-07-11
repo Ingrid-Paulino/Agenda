@@ -8,8 +8,8 @@ const ClientSchema = async (value: unknown): Promise<IClient> => {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(16).required(),
     professionalId: Joi.string().required(),
-    addressId: Joi.string().required(),
-    horaryId: Joi.string().required(),
+    // addressId: Joi.string().required(),
+    // horaryId: Joi.string().required(),
   });
 
   const result = await runSchema(schema, value);
@@ -21,9 +21,9 @@ const ProfessionalSchema = async (value: unknown): Promise<IProfessional> => {
     fullName: Joi.string().min(10).required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(16).required(),
-    specialties: Joi.string().required(),
+    // specialties: Joi.string().required(),
     type: Joi.string().required(),
-    addressId: Joi.string().required(),
+    // addressId: Joi.string().required(),
   });
 
   const result = await runSchema(schema, value);
@@ -44,7 +44,10 @@ const AddressSchema = async (value: unknown): Promise<IAddress> => {
   const schema = Joi.object<IAddress>({
     cep: Joi.string().max(9).required(),
     number: Joi.number().required(),
-    complement: Joi.string().required()
+    complement: Joi.string().required(),
+    professionalId: Joi.string().required(),
+    clientId: Joi.string().required(),
+    adminId: Joi.string().required()
   });
 
   const result = await runSchema(schema, value);
@@ -57,7 +60,7 @@ const AdminSchema = async (value: unknown): Promise<IAdmin> => {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).max(16).required(),
     type: Joi.string().required(),
-    addressId: Joi.string().required()
+    // addressId: Joi.string().required()
   });
 
   const result = await runSchema(schema, value);
@@ -69,7 +72,8 @@ const SpecialtiesSchema = async (value: unknown): Promise<ISpecialtie> => {
     specialtie: Joi.string().required(),
     price: Joi.number().required(),
     description: Joi.string().required(),
-    clientId: Joi.string().required()
+    // clientId: Joi.string().required()
+    professionalId: Joi.string().required()
   });
 
   const result = await runSchema(schema, value);

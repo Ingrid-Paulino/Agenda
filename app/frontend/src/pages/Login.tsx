@@ -31,14 +31,14 @@ export default function Login() {
 
     
     await dispatch(inputsLogin({ email, password }));
-    // navigate("/customerDay");
+    navigate("/customerDay");
     setEmail(" ");
     setPassword(" ");
   };
 
   return (
     <main>
-      <img src="../../images/esmalte.png" alt="esmalte" width="150px" />
+      <img src="src/images/esmalte.png" alt="esmalte" width="150px" />
       <h1>Faça seu Login</h1>
       <form action="" onSubmit={(event) => event.preventDefault()}>
         {/* Forma 1 */}

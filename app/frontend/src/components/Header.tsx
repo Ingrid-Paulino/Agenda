@@ -7,8 +7,8 @@ import "../styles/components.css";
 interface IHeader {
   titlePage: string;
   existButtonInHeader: boolean;
-  textButtonRegister: string;
-  textButtonInside: string;
+  textButtonRegister?: string;
+  textButtonInside?: string;
   funcLoginAndRegister?(event: React.FormEvent<HTMLInputElement>): void;
 }
 

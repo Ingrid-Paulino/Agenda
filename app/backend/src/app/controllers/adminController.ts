@@ -3,6 +3,8 @@ import validateSchema from '../schemas';
 import adminService from '../services/adminService';
 
 const getAll = async (): Promise<Admin[]> => {
+  console.log('0i2');
+
   const result = await adminService.getAll();
   return result;
 };

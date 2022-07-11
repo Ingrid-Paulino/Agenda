@@ -1,6 +1,22 @@
 import crypto from 'crypto';
 import { commonDates } from '../interface';
 
+const getAllAdmin = async <T> (sequelizeDAO: any, tabelaNameModel: any, columName: string): Promise<T[]> => {
+  try {
+    console.log('0i4');
+
+    const result = await sequelizeDAO.findAll({
+      include: { model: tabelaNameModel, as: columName}
+    });
+    console.log('0i5');
+
+    return result;
+  } catch (error) {
+    console.log('error', error);
+    throw new Error(`error ${error}`);
+  }
+};
+
 const getAll = async <T> (sequelizeDAO: any): Promise<T[]> => {
   try {
     const result = await sequelizeDAO.findAll();
@@ -49,5 +65,6 @@ export default {
   create,
   getAll,
   findAnything,
-  createOther
+  createOther,
+  getAllAdmin
 };
