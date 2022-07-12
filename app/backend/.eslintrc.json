@@ -11,6 +11,7 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-explicit-any": "off", // ignora o error que dar no middleware de error no next quando não usado o ErrorRequestHandler
     "@typescript-eslint/no-unused-vars": [
       "error",

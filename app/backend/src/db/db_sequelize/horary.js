@@ -1,12 +1,6 @@
-import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
-
-type UserStatic = typeof Model
-  & { associate: (models: any) => void }
-  & { new(values?: Record<string, unknown>, options?: BuildOptions): any }
-
-const specialtieDAO = (sequelize: Sequelize) => {
-  const Specialtie = <UserStatic>sequelize.define(
-    'Specialtie',
+module.exports = (sequelize, DataTypes) => {
+  const Horary = sequelize.define(
+    'Horary',
     {
       id: {
         allowNull: false,
@@ -14,17 +8,21 @@ const specialtieDAO = (sequelize: Sequelize) => {
         primaryKey: true,
         type: DataTypes.STRING(36),
       },
-      specialtie: {
+      date: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      hour: {
+        allowNull: false,
+        type: DataTypes.TIME,
+      },
+      specialty: {
         allowNull: false,
         type: DataTypes.STRING,
       },
       price: {
         allowNull: false,
-        type: DataTypes.INTEGER,
-      },
-      description: {
-        allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.DOUBLE,
       },
       clientId: {
         allowNull: false,
@@ -32,6 +30,7 @@ const specialtieDAO = (sequelize: Sequelize) => {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         field: 'client_id',
+        foreignKey: true,
         references: {
           model: 'Clients',
           key: 'id',
@@ -43,22 +42,22 @@ const specialtieDAO = (sequelize: Sequelize) => {
         field: 'created_at',
       },
       updatedAt: {
-        allowNull: true,
+        allowNull: false,
         type: DataTypes.DATE(3),
         field: 'updated_at',
       },
     },
     {
-      tableName: 'Specialties',
-      underscored: true
+      timestamps: true,
+      tableName: 'Horaries',
+      underscored: true,
     }
   );
 
-  Specialtie.associate = (models) => {
-    Specialtie.hasOne(models.Professional,
-      { foreignKey: 'specialtie_id', as: 'professionals' });
+  Horary.associate = (models) => {
+    Horary.belongsTo(models.Client,
+      { foreignKey: 'client_id', as: 'clients' });
   };
 
-  return Specialtie;
+  return Horary;
 };
-export default specialtieDAO;

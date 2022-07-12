@@ -1,12 +1,5 @@
-import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize';
-
-type UserStatic = typeof Model
-  & { associate: (models: any) => void }
-  & { new(values?: Record<string, unknown>, options?: BuildOptions): any }
-
-
-const clientDAO = (sequelize: Sequelize) => {
-  const Client = <UserStatic>sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const Client = sequelize.define(
     'Client',
     {
       id: {
@@ -29,24 +22,14 @@ const clientDAO = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
       },
       professionalId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
+        allowNull: true,
+        type: DataTypes.STRING,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         field: 'professional_id',
+        foreignKey: true,
         references: {
           model: 'Professionals',
-          key: 'id',
-        },
-      },
-      addressId: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'address_id',
-        references: {
-          model: 'Addresses',
           key: 'id',
         },
       },
@@ -56,30 +39,29 @@ const clientDAO = (sequelize: Sequelize) => {
         field: 'created_at',
       },
       updatedAt: {
-        allowNull: true,
+        allowNull: false,
         type: DataTypes.DATE(3),
         field: 'updated_at',
       },
     },
     {
+      timestamps: true,
       tableName: 'Clients',
-      underscored: true
+      underscored: true,
     }
   );
 
   Client.associate = (models) => {
-    Client.hasOne(models.Professional,
-      { foreignKey: 'client_id', as: 'professionals' });
-
     Client.hasMany(models.Horary,
-      { foreignKey: 'client_id', as: 'horaries' });
+      { foreignKey: 'clientId', as: 'horaries' });
 
-    Client.hasOne(models.Address,
-      { foreignKey: 'client_id', as: 'addresses' });
+    Client.hasMany(models.Address,
+      { foreignKey: 'clientId', as: 'addresses' });
+
+    Client.belongsTo(models.Professional,
+      { foreignKey: 'professionalId', as: 'professionals' });
   };
 
 
   return Client;
 };
-
-export default clientDAO;

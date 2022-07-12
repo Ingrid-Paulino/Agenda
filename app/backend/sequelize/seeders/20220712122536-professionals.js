@@ -2,24 +2,22 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Horaries', [
+    await queryInterface.bulkInsert('Professionals', [
       {
         id: 1,
-        date: '2022-06-20',
-        hour: '10:30:00',
-        specialty: 'pé',
-        price: 20.0,
-        client_id: 1,
+        full_name: 'Heloisa Ezequiel Paulino Vasconcellos Dias',
+        email: 'heloizaezequielp851@gmail.com',
+        password: '123456789',
+        type: 'profissional',
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
       {
         id: 2,
-        date: '2022-08-15',
-        hour: '10:30:00',
-        specialty: 'pé e mão',
-        price: 35.0,
-        client_id: 1,
+        full_name: 'Daniela Souza Silva',
+        email: 'danisouza@gmail.com',
+        password: '12312345',
+        type: 'profissional',
         created_at: Sequelize.literal('CURRENT_TIMESTAMP'),
         updated_at: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
@@ -27,6 +25,6 @@ module.exports = {
   },
 
   down: async (queryInterface, _Sequelize) => {
-    await queryInterface.bulkDelete('Horaries', null, {});
+    await queryInterface.bulkDelete('Professionals', null, {});
   },
 };

@@ -1,12 +1,6 @@
-import { Sequelize, DataTypes, Model, BuildOptions } from 'sequelize';
-
-type UserStatic = typeof Model
-  & { associate: (models: any) => void }
-  & { new(values?: Record<string, unknown>, options?: BuildOptions): any }
-
-const adminDAO = (sequelize: Sequelize) => {
-  const Admin = <UserStatic>sequelize.define(
-    'Admin',
+module.exports = (sequelize, DataTypes) => {
+  const Professional = sequelize.define(
+    'Professional',
     {
       id: {
         allowNull: false,
@@ -28,19 +22,8 @@ const adminDAO = (sequelize: Sequelize) => {
         type: DataTypes.STRING,
       },
       type: {
-        allowNull: true,
-        type: DataTypes.STRING,
-      },
-      addressId: {
         allowNull: false,
         type: DataTypes.STRING,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        field: 'address_id',
-        references: {
-          model: 'Addresses',
-          key: 'id',
-        },
       },
       createdAt: {
         allowNull: false,
@@ -54,17 +37,22 @@ const adminDAO = (sequelize: Sequelize) => {
       },
     },
     {
-      tableName: 'Admins',
+      timestamps: true,
+      tableName: 'Professionals',
       underscored: true,
     }
   );
 
-  Admin.associate = (models) => {
-    Admin.hasOne(models.Address,
-      { foreignKey: 'admin_id', as: 'addresses' });
+  Professional.associate = (models) => {
+    Professional.hasMany(models.Address,
+      { foreignKey: 'professionalId', as: 'addresses' });
+
+    Professional.hasMany(models.Client,
+      { foreignKey: 'professionalId', as: 'clients' });
+
+    Professional.hasMany(models.Specialtie,
+      { foreignKey: 'professionalId', as: 'specialties' });
   };
 
-  return Admin;
+  return Professional;
 };
-
-export default adminDAO;

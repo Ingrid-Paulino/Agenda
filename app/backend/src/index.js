@@ -9,7 +9,7 @@ db_sequelize.authenticate()
       console.log(`running on port ${vars.api.port}`);
     });
   })
-  .catch((error: Error) => {
+  .catch((error) => {
     console.error(error);
 
     process.exit(1);
