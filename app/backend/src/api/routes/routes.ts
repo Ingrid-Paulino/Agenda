@@ -49,10 +49,10 @@ professionalRoute.get('/', async (req, res) => {
   return res.status(200).json(result);
 });
 
-professionalRoute.post('/', async (req, res) => {
-  const result = await professionalController.create(req.body);
-  return res.status(201).json(result);
-});
+// professionalRoute.post('/', async (req, res) => {
+//   const result = await professionalController.create(req.body);
+//   return res.status(201).json(result);
+// });
 
 adminRoute.get('/', async (req, res) => {
   const result = await adminController.getAll();
@@ -69,10 +69,10 @@ specialtiesRoute.get('/', async (req, res) => {
   return res.status(200).json(result);
 });
 
-specialtiesRoute.post('/', async (req, res) => {
-  const result = await specialtiesController.create(req.body);
-  return res.status(200).json(result);
-});
+// specialtiesRoute.post('/', async (req, res) => {
+//   const result = await specialtiesController.create(req.body);
+//   return res.status(200).json(result);
+// });
 
 horaryRoute.get('/', async (req, res) => {
   console.log('oiiiii1');

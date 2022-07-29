@@ -1,19 +1,23 @@
 import bcrypt from 'bcryptjs';
-import { ClientDAO } from '../../db/db_sequelize';
+// import { Client as any } from '../../db/models/db_sequelize';
+
+import Client from '../../db/models/db_sequelize/client';
+
+
 import { MSG, StatusCodes } from '../enum/enumStatusAndMessage';
 import entryMsgStatusError from '../helpers/entryMsgStatusError';
-import { Client, IClient } from '../interface';
+import { Clientt, IClient } from '../interface';
 import Model from '../models/model';
 import descriptografia from '../utils/descriptografia';
 
 
-const getAll = async (): Promise<Client[]> => {
-  const result = await Model.getAll<Client>(ClientDAO);
+const getAll = async (): Promise<Clientt[]> => {
+  const result = await Model.getAll<Clientt>(Client);
   if (!result) throw entryMsgStatusError(StatusCodes.OK, '[]');
   return result;
 };
 
-const create = async (data: IClient): Promise<Client> => {
+const create = async (data: IClient): Promise<Clientt> => {
   const clientsAll = await getAll();
 
   const hash = bcrypt.hashSync(data.password, 10);
@@ -23,7 +27,7 @@ const create = async (data: IClient): Promise<Client> => {
   const findClient = clientsAll.find((client: IClient) => client.email === data.email);
   if (findClient) throw entryMsgStatusError(StatusCodes.CONFLICT, MSG.EXISTING_USER);
 
-  const result = await Model.create<IClient, Client>(data, ClientDAO, hash);
+  const result = await Model.create<IClient, Clientt>(data, Client, hash);
   return result;
 };
 

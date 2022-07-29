@@ -11,10 +11,10 @@ export interface commonDates  {
 
 export interface IAdmin extends commonDates, Entity {
   type: string
-  addressId: Address['id']
+  addressId: AddressI['id']
 }
 
-export interface Admin extends IAdmin {
+export interface AdminI extends IAdmin {
   id: string
 }
 
@@ -24,7 +24,7 @@ export interface IClient extends commonDates, Entity {
   horaryId: number
 }
 
-export interface Client extends IClient {
+export interface Clientt extends IClient {
   id: string
 }
 
@@ -34,7 +34,7 @@ export interface IAddress extends Entity{
   complement: string
 }
 
-export interface Address extends IAddress {
+export interface AddressI extends IAddress {
   id: string
 }
 
@@ -44,10 +44,10 @@ export interface IProfessional extends Entity {
   password: string
   specialties: string
   type: string
-  addressId: Address['id']
+  addressId: AddressI['id']
 }
 
-export interface Professional extends IProfessional {
+export interface ProfessionalI extends IProfessional {
   id: string
 }
 
@@ -55,10 +55,10 @@ export interface ISpecialtie extends Entity {
   specialtie: string
   price: string
   description: string
-  clientId: Client['id']
+  clientId: Clientt['id']
 }
 
-export interface Specialtie extends ISpecialtie {
+export interface SpecialtieI extends ISpecialtie {
   id: string
 }
 
@@ -67,9 +67,9 @@ export interface IHorary extends Entity {
   hour: string
   specialty: string
   price: number
-  clientId: Client['id']
+  clientId: Clientt['id']
 }
 
-export interface Horary extends IHorary {
+export interface HoraryI extends IHorary {
   id: string
 }

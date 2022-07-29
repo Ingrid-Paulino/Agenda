@@ -1,14 +1,17 @@
 import bcrypt from 'bcryptjs';
-import { ProfessionalDAO } from '../../db/db_sequelize';
+// import { ProfessionalDAO } from '../../db/models/db_sequelize';
+
+import Professional from '../../db/models/db_sequelize/professional';
+
 import { MSG, StatusCodes } from '../enum/enumStatusAndMessage';
 import entryMsgStatusError from '../helpers/entryMsgStatusError';
-import { Professional, IProfessional } from '../interface';
+import { ProfessionalI, IProfessional } from '../interface';
 import Model from '../models/model';
 import descriptografia from '../utils/descriptografia';
 
 
-const getAll = async (): Promise<Professional[]> => {
-  const result = await Model.getAll<Professional>(ProfessionalDAO);
+const getAll = async (): Promise<ProfessionalI[]> => {
+  const result = await Model.getAll<ProfessionalI>(Professional);
   if (!result) throw entryMsgStatusError(StatusCodes.OK, '[]');
   return result;
 };
@@ -23,7 +26,7 @@ const create = async (data: IProfessional): Promise<Professional> => {
   const findProfessional = professionalAll.find((professional: IProfessional) => professional.email === data.email);
   if (findProfessional) throw entryMsgStatusError(StatusCodes.CONFLICT, MSG.EXISTING_USER);
 
-  const result = await Model.create<IProfessional, Professional>(data, ProfessionalDAO, hash);
+  const result = await Model.create<IProfessional, Professional>(data, Professional, hash);
   return result;
 };
 

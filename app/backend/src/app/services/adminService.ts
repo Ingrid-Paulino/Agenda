@@ -1,19 +1,20 @@
 import bcrypt from 'bcryptjs';
-import { AdminDAO } from '../../db/db_sequelize';
+// import { AdminDAO } from '../../db/models/db_sequelize';
+import Admin from '../../db/models/db_sequelize/admin';
 import { MSG, StatusCodes } from '../enum/enumStatusAndMessage';
 import entryMsgStatusError from '../helpers/entryMsgStatusError';
-import { IAdmin, Admin } from '../interface';
+import { IAdmin, AdminI } from '../interface';
 import Model from '../models/model';
 import descriptografia from '../utils/descriptografia';
 
 
-const getAll = async (): Promise<Admin[]> => {
-  const result = await Model.getAll<Admin>(AdminDAO);
+const getAll = async (): Promise<AdminI[]> => {
+  const result = await Model.getAll<AdminI>(Admin);
   if (!result) throw entryMsgStatusError(StatusCodes.OK, '[]');
   return result;
 };
 
-const create = async (data: IAdmin): Promise<Admin> => {
+const create = async (data: IAdmin): Promise<AdminI> => {
   const adminAll = await getAll();
 
   const hash = bcrypt.hashSync(data.password, 10);
@@ -23,7 +24,7 @@ const create = async (data: IAdmin): Promise<Admin> => {
   const findAdmin = adminAll.find((admin: IAdmin) => admin.email === data.email);
   if (findAdmin) throw entryMsgStatusError(StatusCodes.CONFLICT, MSG.EXISTING_USER);
 
-  const result = await Model.create<IAdmin, Admin>(data, AdminDAO, hash);
+  const result = await Model.create<IAdmin, AdminI>(data, Admin, hash);
   return result;
 };
 
